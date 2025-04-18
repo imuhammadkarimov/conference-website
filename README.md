@@ -1,21 +1,75 @@
-# Django Template
+# Conference Website
 
-This sample repo contains the recommended structure for a Python Django project. In this sample, we use `django` to build a web application and the `unittest` to run tests.
+This Django project implements a full-featured conference website with user management, blog posts, and a detailed conference page.
 
-For a more in-depth tutorial, see our [Django tutorial](https://code.visualstudio.com/docs/datascience/data-science-tutorial).
+## Features
 
-The code in this repo aims to follow Python style guidelines as outlined in [PEP 8](https://peps.python.org/pep-0008/).
+- **Conference Information**: Event details, schedule, and speaker information
+- **User Management**: Registration, login, and user profiles with profile pictures
+- **Blog System**: Create, read, update, and delete blog posts
 
-## Running the Sample
+## Project Structure
 
-To successfully run this example, we recommend the following VS Code extensions:
-- [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
-- [Python Debugger](https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy)
-- [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance) 
+- **ConferencePage/**: Static conference page with HTML, CSS, and JavaScript
+- **posts/**: Django app for managing blog posts
+- **users/**: Django app for user authentication and profiles
+- **templates/**: HTML templates for the Django apps
+- **static/**: Static files (CSS, JavaScript, images)
+- **media/**: User-uploaded content
 
-- Open the template folder in VS Code (**File** > **Open Folder...**)
-- Create a Python virtual environment using the **Python: Create Environment** command found in the Command Palette (**View > Command Palette**). Ensure you install dependencies found in the `pyproject.toml` file
-- Ensure your newly created environment is selected using the **Python: Select Interpreter** command found in the Command Palette
-- Create and initialize the database by running `python manage.py migrate` in an activated terminal. 
-- Run the app using the Run and Debug view or by pressing `F5`
-- Run tests by running `python manage.py test` in an activated terminal
+## Setup and Installation
+
+### Prerequisites
+- Python 3.10 or higher
+- Django 4.2 or higher
+
+### Installation
+
+1. Clone the repository
+```
+git clone <repository-url>
+cd django-template
+```
+
+2. Create a virtual environment
+```
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+3. Install dependencies
+```
+pip install -r requirements.txt
+```
+
+4. Run migrations
+```
+python manage.py migrate
+```
+
+5. Create a superuser (admin)
+```
+python manage.py createsuperuser
+```
+
+6. Run the development server
+```
+python manage.py runserver
+```
+
+7. Access the site at http://127.0.0.1:8000/
+
+## Running Tests
+
+Run tests with:
+```
+python manage.py test
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -m 'Add your feature'`)
+4. Push to the branch (`git push origin feature/your-feature`)
+5. Open a Pull Request

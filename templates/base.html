@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Conference Website{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Lato:wght@300;400;700;900&family=Lobster+Two:wght@400;700&family=Poppins:wght@300;400;500;600;700;800&family=Satisfy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header class="header">
+        <nav class="allheading">
+            <i class="fas fa-bars menu"></i>
+            <ul>
+                <li class="logo-img">
+                    <a href="{% url 'home' %}">
+                        <img style="object-fit:contain" src="{% static 'img/conference-logo.png' %}" alt="conference logo">
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'home' %}"><h2>Bosh sahifa</h2></a>
+                </li>
+                <li>
+                    <a href="{% url 'about' %}"><h2>Haqida</h2></a>
+                </li>
+                <li>
+                    <a href="{% url 'post-list' %}"><h2>Yangiliklar</h2></a>
+                </li>
+                {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'profile' %}"><h2>{{ user.username }}</h2></a>
+                </li>
+                {% if user.is_staff %}
+                <li>
+                    <a href="{% url 'post-create' %}"><h2>Yangilik yaratish</h2></a>
+                </li>
+                <li>
+                    <a href="{% url 'admin:index' %}"><h2>Admin</h2></a>
+                </li>
+                {% endif %}
+                <li>
+                    <a href="{% url 'logout' %}"><h2>Chiqish</h2></a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{% url 'login' %}"><h2>Kirish</h2></a>
+                </li>
+                <li class="campaign">
+                    <a href="{% url 'signup' %}"><h2>Ro'yxatdan o'tish</h2></a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>    
+    </header>
+
+    <!-- Mobile menu section -->
+    <section class="menu-sec">
+        <nav>
+            <a href="{% url 'home' %}"><h2>Bosh sahifa</h2></a>
+            <a href="{% url 'about' %}"><h2>Haqida</h2></a>
+            <a href="{% url 'post-list' %}"><h2>Yangiliklar</h2></a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'profile' %}"><h2>{{ user.username }}</h2></a>
+            <a href="{% url 'logout' %}"><h2>Chiqish</h2></a>
+            {% else %}
+            <a href="{% url 'login' %}"><h2>Kirish</h2></a>
+            <a href="{% url 'signup' %}"><h2>Ro'yxatdan o'tish</h2></a>
+            {% endif %}
+        </nav>
+        <div class="cancel links">
+            &times;
+        </div>
+    </section>
+
+    <main>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="improved-footer">
+        <div class="footer-top">
+            <div class="footer-section">
+                <h3>Konferensiya haqida</h3>
+                <p>O'zbekiston xalqaro islom akademiyasida "Axborot xavfsizligi sohasida raqamlashtirish muammolari va istiqbollari" mavzusidagi respublika ilmiy-amaliy konferensiyasi.</p>
+                <p class="conference-date"><i class="far fa-calendar-alt"></i> 15-may, 2025</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Tezkor havolalar</h3>
+                <ul class="footer-links">
+                    <li><a href="{% url 'home' %}">Bosh sahifa</a></li>
+                    <li><a href="{% url 'about' %}">Konferensiya haqida</a></li>
+                    <li><a href="{% url 'post-list' %}">Yangiliklar</a></li>
+                    {% if not user.is_authenticated %}
+                    <li><a href="{% url 'signup' %}">Ro'yxatdan o'tish</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Biz bilan bog'laning</h3>
+                <p><i class="fas fa-map-marker-alt"></i> O'zbekiston, Toshkent sh., A.Qodiriy, 11</p>
+                <p><i class="fas fa-phone"></i> +998 71 123 45 67</p>
+                <p><i class="fas fa-envelope"></i> conference@example.com</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Hamkorlar</h3>
+                <div class="partners-grid">
+                    <div class="partner-item">IT Park</div>
+                    <div class="partner-item">Mohir dev</div>
+                    <div class="partner-item">Pro web</div>
+                    <div class="partner-item">Space academy</div>
+                    <div class="partner-item">IIAU</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <p>Veb-saytda barcha huquqlar himoyalangan &copy; {% now "Y" %}</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

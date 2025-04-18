@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Conference Website{% endblock %}
+
+{% block content %}
+<article>
+    <section class="sec1">
+        <p class="para1">
+            O'zbekiston Xalqaro islom akademyasi
+        </p>
+        <div class="title">
+            <h1 class="main-title" data-text="COLLISION INDUSTRY CONFERENCE 2023" style="font-size: 48px;">
+                "Axborot xavfsizligi sohasida raqamlashtirish muammolari va istiqbollari" 
+                mavzusidagi respublika ilmiy-amaliy konferensiyasi 
+            </h1>
+        </div>
+        <p class="para2">
+            Ilmiy-amaliy konferensiya 
+            "O'zbekiston -2030" taraqqiyot strategiyasi va "Raqamli O'zbekiston-2030" dasturini amalga 
+            oshirish borasida belgilangan vazifalarga muvofiq O'zbekiston xalqaro islom akademiyasida 2025-yil 
+            15-may kuni "Axborot xavfsizligi sohasida raqamlashtirish muammolari va istiqbollari" mavzusida 
+            respublika ilmiy- amaliy konferensiyasi o'tkaziladi. 
+        </p>
+        <h2 class="year">
+            O'TKAZILISH MUDDATI: 2025-YIL 15-MAY
+        </h2>
+        <p class="differ">
+            
+        </p>
+    </section>
+    
+    <section id="program" class="sec2">
+        <h2 class="sec-2-title">
+            Asosiy dastur
+        </h2>
+        <hr class="line">
+        <ul class="program">
+            <li class="list">
+                <img src="{% static 'img/lecture-icon.png' %}" alt="lecture-icon">
+                <h3 class="list-header">
+                    Ma'ruza
+                </h3>
+                <p class="list-para">
+                    Turli instutlardan kelgan ma'ruzachilarni almashish va ochish xabarlari haqida tinglang.
+                </p>
+            </li>
+            <li class="list">
+                <img src="{% static 'img/exhibition-icon.png' %}" alt="exhibition-icon">
+                <h3 class="list-header">
+                    Kanvirensa Maqsadi
+                </h3>
+                <p class="list-para">
+                    Konferensiyaning maqsadi diniy-ma'rifiy sohani raqamlashtirishning nazariy muammolari va axborot xavfsizligini ta'minlashda iborat
+                </p>
+            </li>
+            <li class="list">
+                <img src="{% static 'img/forum-icon.png' %}" alt="forum-icon">
+                <h3 class="list-header">
+                    Forum
+                </h3>
+                <p class="list-para">
+                    Har bir mavzu bo'yicha o'z fikr va mulohazalaringizni mutaxassislar bilan bo'lishish uchun vaqt toping.
+                </p>
+            </li>
+            <li class="list">
+                <img src="{% static 'img/workshop-icon.png' %}" alt="workshop-icon">
+                <h3 class="list-header">
+                    Seminar
+                </h3>
+                <p class="list-para">
+                    Ochiq manba litsenziyasidan foydalangan holda o'z ishingizni yaratishga harakat qilib ko'ring.
+                </p>
+            </li>
+            <li class="list">
+                <img src="{% static 'img/ignite-icon.png' %}" alt="ignite-icon">
+                <h3 class="list-header">
+                    Kanfirensiya
+                </h3>
+                <p class="list-para">
+                    Kanfirensiyada ishtirok etish orqali barcha savolarizga javob oling.
+                </p>
+            </li>
+        </ul>
+        <p class="parr"><a href="{% url 'about' %}">BARCHA DASTURNI KO'RING</a>
+        </p>
+    </section>
+
+    {% if featured_posts %}
+    <section id="guests" class="sec3">
+        <h2 class="sec-2-title">
+            Yangiliklar
+        </h2>
+        <hr class="line">
+        <ul class="speakers">
+            {% for post in featured_posts %}
+            <li class="guest">
+                {% if post.image %}
+                <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                {% else %}
+                <img src="{% static 'img/speaker-bg.png' %}" alt="{{ post.title }}">
+                {% endif %}
+                <section>
+                    <h3>{{ post.title }}</h3>
+                    <p class="p1">{{ post.date_posted|date:"F d, Y" }}</p>
+                    <p class="p2">{{ post.content|truncatewords:20 }}</p>
+                    <a href="{% url 'post-detail' post.pk %}" class="btn btn-primary mt-2">Ko'proq</a>
+                </section>
+            </li>
+            {% endfor %}
+        </ul>
+        <div id="load-more">KO'PROQ</div>
+        <div class="text-center mt-4">
+            <a href="{% url 'post-list' %}" class="btn btn-primary">Barcha yangiliklar</a>
+        </div>
+    </section>
+    {% endif %}
+</article>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .btn.btn-primary {
+        background-color: var(--color-secondary);
+        border-color: var(--color-secondaryDeep);
+        transition: all 0.3s ease;
+    }
+    .btn.btn-primary:hover {
+        background-color: var(--color-secondaryDeep);
+        transform: translateY(-2px);
+    }
+</style>
+{% endblock %}

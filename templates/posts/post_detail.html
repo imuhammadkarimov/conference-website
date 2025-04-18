@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<article>
+    <section class="about-sec1">
+        <div class="post-detail-header">
+            <h2 class="about-title">{{ post.title }}</h2>
+            <p>
+                <a href="{% url 'home' %}">Bosh sahifa</a> <a href="{% url 'post-list' %}"> > Yangiliklar</a> <a href="#"><b> > {{ post.title|truncatechars:25 }}</b></a>
+            </p>
+        </div>
+        
+        <div class="post-detail-container">
+            <div class="post-detail-meta">
+                <span>{{ post.author.username }} tomonidan </span>
+                <span>{{ post.date_posted|date:"F d, Y" }} da chop etilgan</span>
+                {% if post.is_featured %}
+                    <span class="post-featured-badge">Tavsiya etilgan</span>
+                {% endif %}
+            </div>
+            
+            {% if user == post.author or user.is_staff %}
+                <div class="post-detail-actions">
+                    <a href="{% url 'post-update' post.pk %}" class="btn btn-primary btn-edit">Tahrirlash</a>
+                    <a href="{% url 'post-delete' post.pk %}" class="btn btn-primary btn-delete">O'chirish</a>
+                </div>
+            {% endif %}
+
+            {% if post.image %}
+                <div class="post-detail-image">
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                </div>
+            {% endif %}
+
+            <div class="post-detail-content">
+                {{ post.content|linebreaks }}
+            </div>
+            
+            <div class="post-detail-footer">
+                <a href="{% url 'post-list' %}" class="btn btn-primary btn-back">
+                    <span>←</span> Barcha yangiliklar
+                </a>
+            </div>
+        </div>
+    </section>
+</article>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .btn.btn-primary {
+        background-color: var(--color-secondary);
+        border-color: var(--color-secondaryDeep);
+        transition: all 0.3s ease;
+    }
+    .btn.btn-primary:hover {
+        background-color: var(--color-secondaryDeep);
+        transform: translateY(-2px);
+    }
+    .sub-about {
+        background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{% static "img/home-bg-desk.png" %}');
+        background-size: cover;
+        background-position: center;
+        color: white;
+    }
+    .sub-about a {
+        color: white;
+    }
+    .post-detail-header {
+        padding: 40px 0;
+    }
+    .post-detail-container {
+        max-width: 900px;
+        margin: 40px auto;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        padding: 30px;
+    }
+    .post-detail-meta {
+        margin-bottom: 20px;
+        color: var(--color-secondary);
+        font-size: 1.1rem;
+    }
+    .post-featured-badge {
+        background-color: var(--color-secondary);
+        color: white;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        margin-left: 10px;
+    }
+    .post-detail-actions {
+        margin-bottom: 30px;
+    }
+    .btn-edit {
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+    .btn-delete {
+        background-color: #dc3545;
+        border-color: #dc3545;
+        margin-left: 5px;
+    }
+    .post-detail-image {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .post-detail-image img {
+        max-width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+    .post-detail-content {
+        line-height: 1.8;
+        font-size: 1.1rem;
+    }
+    .post-detail-content p {
+        margin-bottom: 1.5rem;
+    }
+    .post-detail-footer {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+    }
+    .btn-back {
+        display: inline-flex;
+        align-items: center;
+    }
+    .btn-back span {
+        margin-right: 5px;
+    }
+</style>
+{% endblock %}

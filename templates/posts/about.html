@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Konferensiya haqida{% endblock %}
+
+{% block content %}
+<main class="about">
+    <section class="about-sec1">
+        <div class="sub-about">
+            <h2 class="about-title">
+                "Axborot xavfsizligi sohasida raqamlashtirish muammolari va istiqbollari" mavzusidagi respublika ilmiy-amaliy konferensiyasi
+            </h2>
+            <p>
+                <a href="{% url 'home' %}">Bosh sahifa</a> <a href="{% url 'about' %}"><b> > Konferensiya haqida</b></a>
+            </p>
+        </div>
+        
+        <div class="logo">
+            <img src="{% static 'img/collision-logo.avif' %}" alt="conference-logo">
+        </div>
+        
+        <p class="para2" style="margin: 0 auto; width: 80%; max-width: 800px;">
+            O'zbekiston xalqaro islom akademiyasida 2025-yil 15-may kuni "Axborot xavfsizligi sohasida raqamlashtirish muammolari va istiqbollari" mavzusida respublika ilmiy-amaliy konferensiyasi o'tkaziladi.
+
+            <br><br>Konferensiyaning maqsadi diniy-ma'rifiy sohani raqamlashtirishning nazariy muammolari va axborot xavfsizligini ta'minlash bo'yicha amalga oshiriladigan ishlarning natijalarini aprobatsiyadan o'tkazish, soha bo'yicha innovatsion yondashuv va takliflarni ishlab chiqish, ushbu sohada xorijiy tajribalarni muhokama qilish hamda ilmiy va amaliy o'zaro muloqot muhitini yaratishdan iborat.
+
+            <br><br>Taklif etilayotgan ilmiy yo'nalishlar:
+            <br>1. Diniy-ma'rifiy sohani raqamlashtirishning nazariy va amaliy jihatlari;
+            <br>2. Raqamli transformatsiya sharoitida axborot-kommunikatsiya texnologiyalari;
+            <br>3. Raqamlashtirish sharoitida fuqarolarning elektron madaniyatini shakllantirish;
+            <br>4. Diniy-ma'rifiy sohadagi axborot xavfsizligi.
+        </p>
+        
+        <h2 class="mini-about">
+            Avvalgi konferensiyalar
+        </h2>
+        
+        <div class="images-about">
+            <div class="img-about one">
+                <h3><big>2023</big><br><small>Islom dinini ilmiy asoslarini o'rganish</small></h3>
+            </div>
+            <div class="img-about two">
+                <h3><big>2022</big><br><small>Zamonaviy axborot-kommunikatsiya texnologiyalarini joriy etish muammolari</small></h3>
+            </div>
+            <div class="img-about three">
+                <h3><big>2020</big><br><small>Raqamli texnologiyalar vositasida diniy ma'rifiy ishlarni yuritish</small></h3>
+            </div>
+        </div>
+        
+        <section id="guests" class="sec3" style="margin-top: 50px;">
+            <h2 class="sec-2-title">
+                Konferensiya ma'ruzachilari
+            </h2>
+            <hr class="line">
+            <ul class="speakers">
+                <li class="guest">
+                    <img src="{% static 'img/speaker1.avif' %}" alt="speaker1">
+                    <section>
+                        <h3>Raxmanov Qurbon Sodikovich</h3>
+                        <p class="p1">O'zbekiston xalqaro islom akademiyasi "Zamonaviy AKT" kafedrasi mudiri</p>
+                        <p class="p2">Tizimli tahlil, boshqaruv va axborotni qayta ishlash, dasturiy ta'minot, axborot tizimlari va ularning xavfsizligi, sun'iy intellekt asoslari.</p>
+                    </section>
+                </li>
+                <li class="guest">
+                    <img src="{% static 'img/speaker2.avif' %}" alt="speaker2">
+                    <section>
+                        <h3>Xodjayeva Mavluda Sabirovna</h3>
+                        <p class="p1">O'zbekiston xalqaro islom akademiyasi "Zamonaviy axborot-kommunikatsiya texnologiyalari" kafedrasi dotsenti v.b.</p>
+                        <p class="p2">Boshqaruv, tizimli taxlil, axborotlarni qayta ishlash</p>
+                    </section>
+                </li>
+                <li class="guest">
+                    <img src="{% static 'img/speaker4e.avif' %}" alt="speaker3">
+                    <section>
+                        <h3>Dadamuxamedov Alimjon Irgashevich</h3>
+                        <p class="p1">O'zbekiston xalqaro islom akademiyasi "Zamonaviy axborot-kommunikatsiya texnologilari" kafedrasi katta o'qituvchisi</p>
+                        <p class="p2">Taqsimlangan maʼlumotlar bazasi axborotlarining ishonchliligini taʼminlash, optimal taqdim etishning model va algortimlari</p>
+                    </section>
+                </li>
+                <li class="guest">
+                    <img src="{% static 'img/speaker6.avif' %}" alt="speaker4">
+                    <section>
+                        <h3>Tuxtanazarov Dilmurod Solijonovich</h3>
+                        <p class="p1">O'zbekiston xalqaro islom akademiyasi "Zamonaviy axborot-kommunikatsiya texnologilari" kafedrasi dotsenti</p>
+                        <p class="p2">Foydali konlardagi ishlab chiqarish jarayonlarini matematik modellashtirish, sonli yechish va dasturiy ta'minotlar ishlab chiqish</p>
+                    </section>
+                </li>
+            </ul>
+            <div id="load-more">KO'PROQ</div>
+        </section>
+    </section>
+</main>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .para2 {
+        text-align: left;
+        line-height: 1.8;
+    }
+    
+    /* Enhanced styling for Previous Conferences section */
+    .mini-about {
+        position: relative;
+        margin-bottom: 2rem !important;
+        padding-bottom: 1rem;
+    }
+    
+    .mini-about:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background-color: var(--color-secondary);
+    }
+    
+    .images-about {
+        margin: 2rem auto !important;
+        max-width: 1200px;
+    }
+    
+    .img-about {
+        position: relative;
+        height: 240px !important;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+    }
+    
+    .img-about.one {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{% static "img/about2-2020.avif" %}');
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .img-about.two {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{% static "img/about3-2022.jpeg" %}');
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .img-about.three {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{% static "img/imageS-2019.jpg" %}');
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .img-about:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(236, 82, 66, 0.3);
+    }
+    
+    .img-about h3 {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        text-align: center;
+    }
+    
+    .img-about h3 big {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: var(--color-white);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    .img-about h3 small {
+        font-size: 1rem !important;
+        line-height: 1.4;
+        font-weight: 400;
+        padding: 0 10px;
+        color: var(--color-white);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    }
+</style>
+{% endblock %}

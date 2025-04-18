@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Ro'yxatdan o'tish{% endblock %}
+
+{% block content %}
+<article>
+    <section class="about-sec1" style="padding-top: 30px;">
+        <div class="sub-about" style="padding: 40px 0;">
+            <h2 class="about-title">Ro'yxatdan o'tish</h2>
+            <p>
+                <a href="{% url 'home' %}">Bosh sahifa</a> <a href="#"><b> > Ro'yxatdan o'tish</b></a>
+            </p>
+        </div>
+        
+        <div class="signup-container" style="max-width: 650px; margin: 40px auto; background-color: white; border-radius: 8px; box-shadow: 0 3px 20px rgba(0,0,0,0.1); padding: 30px;">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <img style="object-fit:contain; max-height: 80px;" src="{% static 'img/conference-logo.png' %}" alt="conference logo">
+            </div>
+            
+            <form method="POST">
+                {% csrf_token %}
+                
+                {% if form.errors %}
+                    <div style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                        Iltimos, quyidagi xatolarni to'g'rilang.
+                    </div>
+                {% endif %}
+                
+                <div style="margin-bottom: 20px;">
+                    <label for="{{ form.username.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 500;">Foydalanuvchi nomi</label>
+                    {% if form.username.errors %}
+                        <div style="color: #dc3545; font-size: 0.85em; margin-bottom: 5px;">{{ form.username.errors }}</div>
+                    {% endif %}
+                    <input type="text" name="{{ form.username.name }}" id="{{ form.username.id_for_label }}" value="{{ form.username.value|default:'' }}"
+                           style="width: 100%; padding: 12px; border: 1px solid {% if form.username.errors %}#dc3545{% else %}#ddd{% endif %}; border-radius: 5px; transition: border-color 0.3s;">
+                    <div style="color: #6c757d; font-size: 0.85em; margin-top: 5px;">Majburiy. 150 ta belgi yoki undan kam. Faqat harflar, raqamlar va @/./+/-/_ belgilari.</div>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label for="{{ form.email.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 500;">E-mail</label>
+                    {% if form.email.errors %}
+                        <div style="color: #dc3545; font-size: 0.85em; margin-bottom: 5px;">{{ form.email.errors }}</div>
+                    {% endif %}
+                    <input type="email" name="{{ form.email.name }}" id="{{ form.email.id_for_label }}" value="{{ form.email.value|default:'' }}"
+                           style="width: 100%; padding: 12px; border: 1px solid {% if form.email.errors %}#dc3545{% else %}#ddd{% endif %}; border-radius: 5px; transition: border-color 0.3s;">
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label for="{{ form.organization.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 500;">Tashkilot</label>
+                    {% if form.organization.errors %}
+                        <div style="color: #dc3545; font-size: 0.85em; margin-bottom: 5px;">{{ form.organization.errors }}</div>
+                    {% endif %}
+                    <input type="text" name="{{ form.organization.name }}" id="{{ form.organization.id_for_label }}" value="{{ form.organization.value|default:'' }}"
+                           style="width: 100%; padding: 12px; border: 1px solid {% if form.organization.errors %}#dc3545{% else %}#ddd{% endif %}; border-radius: 5px; transition: border-color 0.3s;">
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label for="{{ form.position.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 500;">Lavozim</label>
+                    {% if form.position.errors %}
+                        <div style="color: #dc3545; font-size: 0.85em; margin-bottom: 5px;">{{ form.position.errors }}</div>
+                    {% endif %}
+                    <input type="text" name="{{ form.position.name }}" id="{{ form.position.id_for_label }}" value="{{ form.position.value|default:'' }}"
+                           style="width: 100%; padding: 12px; border: 1px solid {% if form.position.errors %}#dc3545{% else %}#ddd{% endif %}; border-radius: 5px; transition: border-color 0.3s;">
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label for="{{ form.password1.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 500;">Parol</label>
+                    {% if form.password1.errors %}
+                        <div style="color: #dc3545; font-size: 0.85em; margin-bottom: 5px;">{{ form.password1.errors }}</div>
+                    {% endif %}
+                    <input type="password" name="{{ form.password1.name }}" id="{{ form.password1.id_for_label }}"
+                           style="width: 100%; padding: 12px; border: 1px solid {% if form.password1.errors %}#dc3545{% else %}#ddd{% endif %}; border-radius: 5px; transition: border-color 0.3s;">
+                    <div style="color: #6c757d; font-size: 0.85em; margin-top: 5px;">
+                        <ul style="padding-left: 20px;">
+                            <li>Parolingiz boshqa shaxsiy ma'lumotlaringizga juda o'xshash bo'lmasligi kerak.</li>
+                            <li>Parolingiz kamida 8 ta belgidan iborat bo'lishi kerak.</li>
+                            <li>Parolingiz keng tarqalgan parol bo'lmasligi kerak.</li>
+                            <li>Parolingiz to'liq raqamlardan iborat bo'lmasligi kerak.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 25px;">
+                    <label for="{{ form.password2.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 500;">Parolni tasdiqlang</label>
+                    {% if form.password2.errors %}
+                        <div style="color: #dc3545; font-size: 0.85em; margin-bottom: 5px;">{{ form.password2.errors }}</div>
+                    {% endif %}
+                    <input type="password" name="{{ form.password2.name }}" id="{{ form.password2.id_for_label }}"
+                           style="width: 100%; padding: 12px; border: 1px solid {% if form.password2.errors %}#dc3545{% else %}#ddd{% endif %}; border-radius: 5px; transition: border-color 0.3s;">
+                    <div style="color: #6c757d; font-size: 0.85em; margin-top: 5px;">Tekshirish uchun yuqoridagi parolni qayta kiriting.</div>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 16px;">Ro'yxatdan o'tish</button>
+                </div>
+            </form>
+            
+            <div style="text-align: center; margin-top: 25px; padding-top: 20px; border-top: 1px solid #eee;">
+                <p>Allaqachon hisobingiz bormi? <a href="{% url 'login' %}" style="color: var(--color-secondary); text-decoration: none; font-weight: 500;">Kirish</a></p>
+            </div>
+        </div>
+    </section>
+</article>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .sub-about {
+        background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{% static "img/home-bg-desk.png" %}');
+        background-size: cover;
+        background-position: center;
+        color: white;
+    }
+    .sub-about a {
+        color: white;
+    }
+    input:focus {
+        outline: none;
+        border-color: var(--color-secondary) !important;
+        box-shadow: 0 0 0 3px rgba(236, 82, 66, 0.2);
+    }
+    .btn.btn-primary {
+        background-color: var(--color-secondary);
+        border-color: var(--color-secondaryDeep);
+        transition: all 0.3s ease;
+    }
+    .btn.btn-primary:hover {
+        background-color: var(--color-secondaryDeep);
+        transform: translateY(-2px);
+    }
+</style>
+{% endblock %}

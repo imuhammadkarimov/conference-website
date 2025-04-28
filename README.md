@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Conference Website
 
 This Django project implements a full-featured conference website with user management, blog posts, and a detailed conference page.
@@ -73,3 +74,6 @@ python manage.py test
 3. Commit your changes (`git commit -m 'Add your feature'`)
 4. Push to the branch (`git push origin feature/your-feature`)
 5. Open a Pull Request
+=======
+# conference-website
+>>>>>>> 4ff7f16d8dbb03bfa06559db86dcd83f07fd4448
